@@ -1,0 +1,11 @@
+*.o
+*.doc
+*.txt
+*.log
+vegactrl
+*.a
+*.so
+*.old
+*.txt
+*.sh
+

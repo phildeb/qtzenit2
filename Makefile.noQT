@@ -1,0 +1,56 @@
+# makefile VEGA 
+# 20090119
+# projet conference STENTOFON 
+# philippe debreuil
+
+INSTALL_PREFIX=/vega
+TARGET=vegactrl
+
+
+CFLAGS=-Wall -g -I/usr/inlude/glib-2.0 -I/usr/include/ -I/usr/lib/glib-2.0/include -Iinclude -DGTK_ENABLE_BROKEN -I/usr/include/glib-2.0 -D__USE_GNU
+
+SOURCES=  idlestate.c vega_control.c debug.c misc.c port.c conf.c main.c mixer.c device.c \
+	crm4.c ini.c crm4hearingstate.c radiostate.c reload.c groups.c alarmes.c
+
+OBJSVEGA=$(SOURCES:.c=.o)
+
+%.o : %.c
+	@echo ""
+	@echo "======= compiling... $@ $< ==========="
+	g++ $(CFLAGS) $< -c -o $@
+	@echo "======= compilation DONE $@ $< ==========="
+	
+%.o : %.cpp
+	@echo ""
+	@echo "======= compiling... $@ $< ==========="
+	g++ $(CFLAGS) $< -c -o $@
+	@echo "======= compilation DONE $@ $< ==========="
+
+
+all: ${TARGET}
+
+clean:
+	rm -f *.o ${TARGET} *~
+
+${TARGET}: $(OBJSVEGA) conf.h
+	@echo ""
+	@echo "======= linking... $@ $< ==========="
+	g++ -D__USE_GNU -o ${TARGET} $(OBJSVEGA) -lglib-2.0 -lpthread
+	@echo "======= link DONE $@ $< ==========="
+	cp ${TARGET} /usr/vega/bin
+	@echo "======= copy DONE $@ $< ==========="
+
+
+install:
+	@echo "======= instaling... $@ $< ==========="
+	cp ${TARGET} /usr/vega/bin
+	@echo "======= installing... $@ $< ==========="
+
+SRCTEST= test.c
+
+OBJSTEST=$(SRCTEST:.c=.o)
+	
+test: $(OBJSTEST)
+	@echo "======= linking... $@ $< ==========="
+	g++ -D__USE_GNU -o $@ $(OBJSTEST) -lglib-2.0 -lpthread
+	@echo "======= link DONE $@ $< ==========="

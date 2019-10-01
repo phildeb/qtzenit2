@@ -1,0 +1,543 @@
+
+alphaComControl.c,0
+
+alphaComControl.h,36
+#define __ALPHA_COM_CONTRO_H__2,31
+
+audio.c,261
+void SBI_address(25,790
+void side_tone_cancel(36,1225
+void connect_aga_IN_2ts_2OUT(81,2242
+void connect_agaIN_2ts(143,3849
+void disconnect_agaIN(184,5180
+void aga_sw_reset(223,6355
+void aga_sw_set(263,7496
+int pair(302,8633
+void init_switches(312,8776
+
+audio.h,0
+
+board.c,0
+
+board.h,190
+#define __BOARD_H__2,20
+  BOARD_ASLT 5,56
+  BOARD_AGA6,74
+} board_type_t;7,86
+typedef struct board_configuration_s 36,900
+} board_configuration_t;39,945
+typedef struct board_s 41,971
+
+boutons.c,668
+char asltPort(29,848
+void CRM4_cmd(41,1323
+void CRM4_disp(59,2007
+void CRM4_micro_on(79,2894
+void CRM4_micro_off(90,3189
+void CRM4_volume(101,3483
+void CRM4_disp_msg(113,3891
+void CRM4_disp_reset(136,4515
+void CRM4_declare(150,4907
+void CRM4_activate(168,5256
+char poste(185,5642
+void CRM4_get_btn(200,6017
+void display_time(272,8640
+void reset_displays(294,9159
+void display_CRM4_name_conf(307,9403
+void erase_CRM4_name_conf(317,9749
+void display_CRM4_name(327,10038
+void display_CRM4_config(343,10390
+void set_led(359,10740
+void reset_led_all(396,11621
+char director(417,12075
+void connect_agaIN_2ts_conf(443,12439
+void button_mngmt(486,13786
+
+button.h,98
+#define CRM4_OK	2,64
+	}ps;ps10,224
+	}ls;ls17,357
+	}cc;cc24,471
+	}run_conf;run_conf30,542
+
+conference.c,954
+int test_jupiter(16,369
+int test_radio(29,547
+int test_CRM4(42,723
+int test_manager(55,897
+int test_conference_selected(91,1634
+int test_station_in_conference(102,2000
+void set_conference_name(129,2499
+void unset_conference_name(155,3072
+void unset_manager_audio_link(183,3599
+void set_manager_audio_link(231,4888
+void set_sec_link(280,6300
+void unset_sec_link(331,7764
+void unset_radio_audio_link(379,8963
+void unset_audio_links(426,10163
+void set_radio_audio_link(490,11965
+void set_audio_links(538,13187
+void set_conference_leds(603,15081
+void unset_conference_leds(647,16148
+int test_1_more_conference(687,16991
+void set_station_memory(708,17299
+void unset_station_memory(720,17718
+int test_conference_activ_on_station(731,18112
+void unset_conference_activ(751,18455
+void set_conference_activ(840,21414
+int get_manager_nbr(949,25306
+int conference_exist(980,25991
+void set_conference(995,26267
+void conf_select(1031,27531
+
+conference.h,24
+#define MAX_SETS	5,327
+
+conf.h,224
+#define __CONF_H__2,19
+typedef struct aga_port_s 7,60
+} vega_aga_mixer_t;10,115
+typedef struct aslt_crm4_port_s 13,137
+} vega_aslt_crm4_port_t;17,199
+typedef struct vega_conference_s 20,226
+} vega_conference_t;29,308
+
+config.h,24
+#define		CONF_FILE	1,0
+
+configuration.c,99
+void load_current_config(3,20
+struct p5,70
+struct g15,339
+struct c23,431
+struct config 30,575
+
+configuration.h,440
+#define	TSET_MAX	1,0
+#define	CRM4_MAX	2,21
+#define	BTON_MAX	3,42
+#define	GRP_MAX	4,64
+#define 	CONF_MAX	5,84
+#define	YES	6,106
+#define	NO	7,122
+#define	CRM4	8,138
+#define	VHF	9,155
+#define	JUPITER	10,171
+#define	POST_NBR	11,190
+#define 	RED	12,210
+#define	GREEN	13,227
+#define	FIX	14,245
+#define	SLO_BL	15,264
+#define	FAST_BL	16,285
+#define	CRM4_OK	17,307
+	}p;p29,681
+	}g;g36,787
+	}c;c44,961
+	}config;config52,1062
+
+conf_load.c,294
+void read_till_semic(14,297
+void group_expand(30,565
+void conferences_loading(51,1026
+void groupes_loading(96,2283
+void postes_loading(137,3436
+void name_loading(210,5641
+void token_handling(221,5918
+void read_token(264,6819
+void load_current_config(281,7081
+void config_set(318,8062
+
+conf_loading.h,0
+
+const_audio.h,128
+int connex_conf[connex_conf3,32
+char ts_radio[ts_radio9,493
+char ts_jupiter[ts_jupiter10,581
+char ts_CRM4[ts_CRM411,630
+
+control_adress.h,540
+#define 	alphaIP	2,40
+#define 	VEGA1IP	3,72
+#define 	VEGA2IP	4,106
+#define 	alphaPORT	5,140
+#define 	RCVBUFSIZE	8,179
+#define	EOMSG	11,225
+#define	NUM_MAX	12,246
+#define	NUM_MIN	13,265
+#define T_PING	16,307
+#define 	PING	19,353
+#define	PONG	20,373
+#define 	GDN	21,392
+#define	GDA	22,412
+#define	BOA	23,431
+#define	BYA	24,450
+#define	CLR_B	25,469
+#define	ERROR	26,489
+#define	SET_B	27,508
+#define	BOARD_MAX	30,554
+#define APPDIR 32,576
+#define 	alpha_bconf	34,604
+#define CONFIGURATION 39,766
+#define TEST_CONF	42,874
+
+control.c,568
+	void t1(47,1445
+	void t2(76,2278
+void set_dcnx(108,3190
+	void set_permanent_cnx(137,4024
+void micro_cnx_on(169,4951
+void	micro_cnx_off(198,5809
+void empty_receive_buffer(226,6647
+void ping_pong(249,7335
+void get_device_num(301,8884
+int get_board_conf(364,10687
+void test_board(419,11782
+void alpha_test_boards(480,13996
+void test_conf(527,15038
+void reset_test_new_conf(544,15333
+void init_running_conf(563,15639
+void run_mode(610,16523
+int socket_open(735,20068
+void alpha_slave_mode_test(780,21344
+int ethernet_test(810,22207
+int main(828,22627
+
+debug.c,144
+#define _ROOT_NAME_ 11,157
+int verbose=13,185
+int loglvl 16,202
+void vega_log_set_loglvl(18,228
+void vega_log(23,285
+void msg_log(77,1723
+
+debug.h,388
+#define __DEBUG_H__2,20
+#define _INFO_ 6,60
+#define _LOG_DEBUG 9,108
+#define _LOG_INFO 10,134
+#define _LOG_ERROR 11,160
+#define _LOG_CRITICAL 12,186
+#define VEGA_LOG_INFO 15,214
+#define VEGA_LOG_DEBUG 16,273
+#define VEGA_LOG_ERROR 17,334
+#define VEGA_LOG_CRITICAL 18,395
+  vega_message_direction_in 26,598
+  vega_message_direction_out27,631
+} vega_message_direction_t;28,660
+
+device.c,0
+
+init_alpha.c,240
+#define APPDIR 15,248
+char ascii_byte(18,340
+void init_mixeur(46,995
+void init_poste(142,2986
+void init_jup(241,5074
+void init_radio(338,7174
+void init_conference(435,9274
+void init_side_tone(600,13100
+void init_alphacom(613,13287
+
+init.h,0
+
+ixpci.h,3704
+#define _IXPCI_H3,55
+#define ICPDAS_LICENSE 9,149
+#define SUCCESS 13,220
+#define FAILURE 17,262
+#define ORGANIZATION 20,289
+#define FAMILY 21,319
+#define DEVICE_NAME 22,365
+#define DEVICE_NAME_LEN 23,435
+#define DEVICE_NR_DEVS 24,461
+#define DEVICE_MAJOR 25,486
+#define DEVICE_MINOR 26,552
+#define IXPCI_PROC_FILE 29,627
+#define IXPCI_PROC_FILE 31,677
+#define PCI_BASE_ADDRESSES_NUMBER 34,723
+#define PBAN 35,760
+#define CARD_NAME_LENGTH 37,801
+#define CNL 38,830
+#define KMSG(40,861
+#define PCI_1800 51,1161
+#define PCI_1802 52,1202
+#define PCI_1602 53,1243
+#define PCI_1602_A 54,1284
+#define PCI_1202 55,1325
+#define PCI_1002 56,1366
+#define PCI_P16C16 57,1407
+#define PCI_P16R16 58,1448
+#define PCI_P16POR16 59,1489
+#define PCI_P8R8 60,1530
+#define PCI_TMC12 61,1571
+#define PCI_M512 62,1612
+#define PCI_M256 63,1653
+#define PCI_M128 64,1694
+#define PCI_9050EVM 65,1735
+#define IXPCI_VENDOR(84,2405
+#define IXPCI_DEVICE(85,2442
+#define IXPCI_SUBVENDOR(86,2491
+#define IXPCI_SUBDEVICE(87,2542
+	IXPCI_8254_COUNTER_0,91,2652
+	IXPCI_8254_COUNTER_1,92,2675
+	IXPCI_8254_COUNTER_2,93,2698
+	IXPCI_8254_CONTROL_REG,94,2721
+	IXPCI_SELECT_THE_ACTIVE_8254_CHIP,95,2746
+	IXPCI_GENERAL_CONTROL_REG,96,2782
+	IXPCI_STATUS_REG,97,2810
+	IXPCI_AD_SOFTWARE_TRIGGER_REG,98,2829
+	IXPCI_DIGITAL_INPUT_PORT,99,2861
+	IXPCI_DIGITAL_OUTPUT_PORT,100,2888
+	IXPCI_ANALOG_INPUT_CHANNEL_CONTROL_REG,101,2916
+	IXPCI_ANALOG_INPUT_GAIN_CONTROL_REG,102,2957
+	IXPCI_ANALOG_INPUT_PORT,103,2995
+	IXPCI_ANALOG_OUTPUT_CHANNEL_1,104,3021
+	IXPCI_ANALOG_OUTPUT_CHANNEL_2,105,3053
+	IXPCI_PCI_INTERRUPT_CONTROL_REG,106,3085
+	IXPCI_CLEAR_INTERRUPT,107,3119
+	IXPCI_LAST_REG108,3143
+#define IXPCI_8254C0 111,3163
+#define IXPCI_8254C1 112,3211
+#define IXPCI_8254C2 113,3259
+#define IXPCI_8254CR 114,3307
+#define IXPCI_8254_CHIP_SELECT 115,3357
+#define IXPCI_8254CS 116,3422
+#define IXPCI_GCR 117,3472
+#define IXPCI_CONTROL_REG 118,3525
+#define IXPCI_CR 119,3578
+#define IXPCI_SR 120,3623
+#define IXPCI_ADST 121,3667
+#define IXPCI_DI 122,3724
+#define IXPCI_DO 123,3776
+#define IXPCI_AICR 124,3829
+#define IXPCI_AIGR 125,3895
+#define IXPCI_AI 126,3958
+#define IXPCI_AD 127,4009
+#define IXPCI_AO1 128,4045
+#define IXPCI_DA1 129,4102
+#define IXPCI_AO2 130,4139
+#define IXPCI_DA2 131,4196
+#define IXPCI_PICR 132,4233
+#define IXPCI_CI 133,4292
+typedef struct ixpci_signal 136,4386
+} ixpci_signal_t;149,4948
+typedef struct ixpci_reg 152,5002
+} ixpci_reg_t;156,5166
+	IXPCI_RM_RAW,160,5219
+	IXPCI_RM_NORMAL,161,5281
+	IXPCI_RM_READY,162,5327
+	IXPCI_RM_TRIGGER,163,5373
+	IXPCI_RM_LAST_MODE164,5443
+struct ixpci_carddef 168,5497
+typedef struct ixpci_devinfo 179,5844
+} ixpci_devinfo_t;197,6667
+	IXPCI_IOCTL_ID_RESET,201,6718
+	IXPCI_IOCTL_ID_GET_INFO,202,6741
+	IXPCI_IOCTL_ID_SET_SIG,203,6767
+	IXPCI_IOCTL_ID_READ_REG,204,6792
+	IXPCI_IOCTL_ID_WRITE_REG,205,6818
+	IXPCI_IOCTL_ID_TIME_SPAN,206,6845
+	IXPCI_IOCTL_ID_DI,207,6872
+	IXPCI_IOCTL_ID_DO,208,6892
+	IXPCI_IOCTL_ID_IRQ_ENABLE,209,6912
+	IXPCI_IOCTL_ID_IRQ_DISABLE,210,6940
+	IXPCI_IOCTL_ID_LAST_ITEM211,6969
+#define IXPCI_MAGIC_NUM 214,7024
+#define IXPCI_GET_INFO 215,7099
+#define IXPCI_SET_SIG 217,7191
+#define IXPCI_READ_REG 219,7281
+#define IXPCI_WRITE_REG 220,7368
+#define IXPCI_TIME_SPAN 221,7456
+#define IXPCI_WAIT 222,7534
+#define IXPCI_DELAY 223,7575
+#define IXPCI_BLOCK 224,7616
+#define IXPCI_RESET 225,7657
+#define IXPCI_IOCTL_DI 227,7726
+#define IXPCI_IOCTL_DO 228,7800
+#define IXPCI_IRQ_ENABLE 230,7875
+#define IXPCI_IRQ_DISABLE 231,7949
+#define devfs_register_chrdev(311,10695
+#define devfs_unregister_chrdev(312,10762
+#define ixpci_init(313,10829
+#define ixpci_cleanup(314,10866
+
+m.c,394
+int reset_audioway(10,192
+int test_audioway_out(28,589
+int test_conference_activated(46,990
+void speaking_function(61,1320
+void desspeaking_function(192,3953
+void hearing_function(319,6375
+void deshearing_function(405,8552
+*away away454,9779
+void setting_blinking_led(464,10101
+void resetting_blinking_led(478,10459
+void m_button_pressed(492,10819
+void m_button_released(547,12615
+
+messages.c,209
+void *dump_type(dump_type18,273
+const char *dump_message_buffer(dump_message_buffer41,668
+const char *dump_message(dump_message49,823
+const char *dump_message_serialized(dump_message_serialized62,1129
+
+messages.h,297
+#define __MESSAGES_H__2,23
+#define MAX_MSG_SIZE 6,66
+#define		ICCMT_CC_GET_SW_VSN	9,133
+#define		ICCMT_CC_SW_VSN	11,168
+#define		ICCMT_CC_SET_MODE	15,254
+#define		EOMSG	20,315
+#define		ICCMT_CC_PING	25,364
+#define		ICCMT_CC_PONG	26,393
+typedef struct tcp_msg_s 29,451
+} tcp_msg_t;33,544
+
+m.h,0
+
+misc.c,27
+void critical_exit(21,308
+
+misc.h,43
+#define __MISC_H__2,19
+#define BYTE 6,62
+
+mixer.h,218
+#define __MIXER_H__2,20
+typedef struct sub_output_s 8,95
+} vega_sub_output_t;12,295
+typedef struct vega_input_s 15,318
+} vega_input_t;21,484
+typedef struct physical_mixer_s 24,502
+} vega_physical_mixer_t;30,574
+
+pio.c,130
+void p_port_mngmt(16,294
+void io_in(64,1482
+void io_out(117,2675
+void unset_radio_base(160,3731
+void set_radio_base(165,3820
+
+pio.h,0
+
+radio.c,1092
+void set_radio_type2(14,257
+void unset_radio_type2(128,2474
+void set_radio_type3(235,4469
+void unset_radio_type3(349,6643
+void set_radio_type4(456,8594
+void set_radio_type4_sw(545,10222
+void unset_radio_type4(586,11151
+void reset_radio_type4_sw(667,12496
+void set_radio_type5(703,13262
+void set_radio_type5_sw(790,14805
+void unset_radio_type5(829,15677
+void reset_radio_type5_sw(910,17022
+void set_radio_type6(945,17787
+void unset_radio_type6(1059,19961
+void set_radio_type7(1166,21913
+void unset_radio_type7(1281,24088
+void set_radio_type8(1387,26039
+void set_radio_type8_sw(1474,27581
+void unset_radio_type8(1513,28453
+void reset_radio_type8_sw(1594,29797
+void set_radio_type9(1629,30562
+void set_radio_type9_sw(1716,32104
+void unset_radio_type9(1755,32976
+void reset_radio_type9_sw(1836,34320
+void set_radio_type10(1871,35085
+void unset_radio_type10(1946,36638
+void set_radio_type11(2014,37965
+void set_radio_type11_sw(2062,38886
+void unset_radio_type11(2101,39796
+void reset_radio_type11_sw(2143,40515
+void set_radio(2178,41284
+void reset_radio(2248,42853
+
+radio.h,0
+
+switch.c,0
+
+switch.h,48
+typedef struct switch_s 6,96
+} switch_t;9,126
+
+tslot.h,119
+#define __TSLOT_H__2,20
+  time_slot_link_dynamic 8,59
+  time_slot_link_static	9,131
+} time_slot_link_type_t;10,190
+
+util.c,334
+void ms_wait(13,253
+int get_msg_length(31,562
+ void special_printf(46,744
+void next_msg(68,1152
+void set_non_blocking(77,1324
+void set_blocking(96,1659
+void wait(115,1991
+int checksum(136,2368
+void message_builder(147,2597
+void incaseofError(176,3285
+void clr_busy(183,3448
+void set_busy(213,4569
+void clr_error(244,5721
+
+util.h,0
+
+vega_control.c,771
+vega_control_t *vega_control_create(vega_control_create25,502
+void vega_control_reinit_link(37,796
+void vega_control_destroy_connection(56,1258
+int vega_control_init(82,1752
+void vega_control_set_callback(134,3126
+void log_receive_message(146,3303
+int vega_control_set_non_blocking_mode(154,3387
+int vega_control_set_blocking_mode(173,3932
+int vega_control_recv_message_nonbloquant(195,4568
+int vega_control_recv_message(240,5618
+void *vega_control_handle_link_thread(vega_control_handle_link_thread294,6982
+int vega_control_get_message_bloquant(544,14857
+void *vega_control_get_message_thread(vega_control_get_message_thread552,15006
+tcp_msg_t *vega_control_get_next_msg(vega_control_get_next_msg565,15179
+int vega_control_send_alphacom_msg(682,18547
+
+vega_control.h,645
+#define __TCPLINK_H__2,22
+#define MAX_RECEIVE_QUEUE_ELEMENTS 9,90
+  ST_disconnected 14,189
+  ST_definitely_disconnected,15,254
+  ST_disconnected_pending_slave,16,363
+  ST_connected_master,17,456
+  ST_connected_unknown,18,512
+  ST_connected_slave,19,575
+  ST_scanning_boards,20,646
+  ST_init_boards,21,696
+  ST_set_busy_boards,22,743
+  ST_build_matrix,23,808
+  ST_running_and_pray	24,866
+  TCP_EVENT_DISCONNECTED 31,973
+  TCP_EVENT_SEND_ERROR,32,1003
+  TCP_EVENT_RECV_ERROR,33,1027
+  KEEP_ALIVE_ERROR,34,1051
+  RECEIVED_MSG35,1071
+} vega_control_event_t;36,1086
+typedef struct vega_control_s 41,1114
+} vega_control_t;84,1961
+
+wait_queue.c,363
+#define LOCK_MUTEX(21,374
+#define UNLOCK_MUTEX(22,419
+int vega_queue_init_sem(25,470
+  union semun 27,522
+int vega_queue_inc_nb_elts(50,893
+int vega_queue_dec_nb_elts(71,1219
+vega_queue_t *vega_queue_create(vega_queue_create90,1546
+int vega_queue_destroy(118,2019
+int vega_queue_insert_elt(143,2372
+void *vega_queue_get_elt(vega_queue_get_elt164,2729
+
+wait_queue.h,88
+#define __TSA_QUEUE_H__2,24
+typedef struct vega_msg_queue 6,68
+} vega_queue_t;11,200

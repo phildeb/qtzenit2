@@ -1,0 +1,154 @@
+#ifndef __DEBUG_H__
+#define __DEBUG_H__
+
+#include <stdarg.h>
+#include "const.h"
+
+#define _CODE_SRC_INFO_ __FILE__,__LINE__,__FUNCTION__
+
+#define _LOG_DEBUG      0
+#define _LOG_INFO       1
+#define _LOG_ERROR      2
+#define _LOG_CRITICAL   3
+
+#define VEGA_LOG_INFO                     _LOG_INFO, _CODE_SRC_INFO_
+#define VEGA_LOG_DEBUG                    _LOG_DEBUG, _CODE_SRC_INFO_
+#define VEGA_LOG_ERROR                    _LOG_ERROR, _CODE_SRC_INFO_
+#define VEGA_LOG_CRITICAL                 _LOG_CRITICAL, _CODE_SRC_INFO_
+
+#define INFO					VEGA_LOG_INFO
+#define DEBUG                   VEGA_LOG_DEBUG
+#define ERROR                   VEGA_LOG_ERROR
+#define CRITICAL                VEGA_LOG_CRITICAL
+
+void vega_log(int loglvl, const char *file, int line, const char *function, const char* fmt, ...);
+
+typedef enum  {
+  vega_message_direction_in = 0,
+  vega_message_direction_out
+} vega_message_direction_t;
+
+void msg_log(vega_message_direction_t direction, BYTE *psmg, int len);
+
+typedef enum{
+
+	EV_LOG_CONFERENCE_ACTIVATED		= 100,
+	EV_LOG_CONFERENCE_DEACTIVATED	= 101,
+		
+	EV_LOG_DEVICE_START_SPEAKING		= 200,
+	EV_LOG_DEVICE_STOP_SPEAKING			= 201,
+	EV_LOG_DEVICE_START_GENERAL_CALL	= 202,
+	EV_LOG_DEVICE_STOP_GENERAL_CALL		= 203,
+	EV_LOG_DEVICE_ADDED					= 204,
+	
+	EV_LOG_DEVICE_REMOVED				= 205,
+	EV_LOG_DEVICE_EXCLUDED				= 208,
+	
+	EV_LOG_DEVICE_ASK_REINCLUSION		= 209,
+	EV_LOG_DEVICE_SWITCH_CONFERENCE		= 210,
+	EV_LOG_DEVICE_START_GROUP_CALL		= 211,
+	EV_LOG_DEVICE_STOP_GROUP_CALL		= 212,
+	EV_LOG_DEVICE_INCLUDED				= 213,
+
+	
+	EV_LOG_CONFIGURATION_RELOADED	= 304, // seul evt qui est a la fois une alarme et un evenement !
+	//EV_LOG_VEGA_GUI_STARTED			= 305,
+	//EV_LOG_VEGA_GUI_STOPPED			= 306,
+
+
+	
+	EV_ALARM_AGA_BOARD_PLUGGED		= 400,
+	EV_ALARM_AGA_BOARD_UNPLUGGED	= 401,
+
+	EV_ALARM_ASLT_BOARD_PLUGGED		= 402,
+	EV_ALARM_ASLT_BOARD_UNPLUGGED	= 403,
+
+	EV_ALARM_BOARD_ANOMALY			= 404,
+	EV_ALARM_END_BOARD_ANOMALY		= 405,
+	
+	EV_ALARM_DEVICE_ANOMALY			= 406,
+	EV_ALARM_END_DEVICE_ANOMALY		= 407,
+	
+	//EV_ALARM_RESTARTED_BY_GUI		= 408,
+	
+	EV_ALARM_CNX_ALPHACOM_CONTROL_DOWN	= 409,
+	EV_ALARM_CNX_ALPHACOM_CONTROL_UP		= 410,
+	
+	EV_ALARM_POWER_DOWN				= 411,
+	EV_ALARM_POWER_UP				= 412,
+	
+	//EV_ALARM_CONFIGURATION_RELOADED = 413,
+
+	EV_ALARM_CNX_IHM_CONTROL_UP		= 414,
+	EV_ALARM_CNX_IHM_CONTROL_DOWN	= 415
+}EV_LOG_T;
+
+/*
+
+INSERT INTO event_type( id, name ) VALUES ( 213, 'EV_LOG_DEVICE_INCLUDED' ) 
+
+requête SQL: SELECT * FROM `event_type` LIMIT 0, 30 ;
+Enregistrements: 23
+id 	name 	code
+213 	EV_LOG_DEVICE_INCLUDED 	 
+100 	CONFERENCE_ACTIVATED 	 
+101 	CONFERENCE_DEACTIVATED 	 
+200 	DEVICE_START_SPEAKING 	 
+201 	DEVICE_STOP_SPEAKING 	 
+202 	DEVICE_START_GENERAL_CALL 	 
+203 	DEVICE_STOP_GENERAL_CALL 	 
+204 	DEVICE_ADDED 	 
+205 	DEVICE_REMOVED 	 
+206 	DEVICE_PLUGGED 	 
+207 	DEVICE_UNPLUGGED 	 
+208 	DEVICE_EXCLUDED 	 
+209 	DEVICE_ASK_REINCLUSION 	 
+210 	DEVICE_SWITCH_CONFERENCE 	 
+211 	DEVICE_START_GROUP_CALL 	 
+212 	DEVICE_STOP_GROUP_CALL 	 
+300 	VEGA_CONTROL_STARTED 	 
+301 	EV_LOG_VEGA_CONTROL_RESTARTED 	 
+302 	VEGA_CONTROL_NETWORK_DOWN 	 
+303 	VEGA_CONTROL_NETWORK_UP 	 
+304 	CONFIGURATION_RELOADED 	 
+305 	VEGA_GUI_STARTED 	 
+306 	VEGA_GUI_STOPPED 	 
+
+  
+
+
+Nombre d'enregistrements insérés : 1 (Traitement en 0.0004 sec.)
+requête SQL:
+INSERT INTO alarm_type( id, name ) VALUES ( 411, 'EV_ALARM_POWER_DOWN' ) 
+INSERT INTO alarm_type( id, name ) VALUES ( 412, 'EV_ALARM_POWER_UP' ) 
+INSERT INTO alarm_type( id, name ) VALUES ( 413, 'EV_ALARM_CONFIGURATION_RELOADED' ) 
+
+
+Base de données: zenitel
+Généré le : Mar 25 Août 2009 à 18:11
+Généré par: phpMyAdmin 2.11.8.1deb5+lenny1 / MySQL 5.0.51a-24+lenny1
+requête SQL: SELECT * FROM `alarm_type` LIMIT 0, 30 ;
+Enregistrements: 14
+id 	name 	code
+413 	EV_ALARM_CONFIGURATION_RELOADE 	 
+412 	EV_ALARM_POWER_UP 	 
+411 	EV_ALARM_POWER_DOWN 	 
+400 	ALARM_AGA_BOARD_PLUGGED 	 
+401 	ALARM_AGA_BOARD_UNPLUGGED 	 
+402 	ALARM_ASLT_BOARD_PLUGGED 	 
+403 	ALARM_ASLT_BOARD_UNPLUGGED 	 
+404 	ALARM_BOARD_ANOMALY 	 
+405 	ALARM_END_BOARD_ANOMALY 	 
+406 	ALARM_DEVICE_ANOMALY 	 
+407 	ALARM_END_DEVICE_ANOMALY 	 
+408 	ALARM_RESTARTED_BY_GUI 	 
+409 	ALARM_CONTROL_NETWORK_DOWN 	 
+410 	ALARM_CONTROL_NETWORK_UP
+
+*/
+
+void vega_event_log(EV_LOG_T event, int d1, int d2, int C, const char* fmt, ...);
+void vega_alarm_log(EV_LOG_T type_alarm, int board, int device, const char* fmt, ...);
+void critical_dump();
+
+#endif

@@ -1,0 +1,89 @@
+#!/bin/sh
+################################################################
+#
+# ixpci.inst
+#
+# Script to load ixpci device drivers automatically and properly
+#
+# Required Utilities
+#
+#   uname
+#
+#   sed  Stream Editor, sed exists on most of unix system,
+#        if your system hasn't it, try download it from:
+#        ftp://ftp.gnu.org/gnu/sed/
+#
+# History
+#
+# v 0.4.0 31 Jan 2007 by Reed Lai
+#   Support kernel 2.6.x
+#
+# v 0.3.1  8 Aug 2003 by Reed Lai
+#   Fixed a KVER bug.
+#
+# v 0.3.0 26 Jul 2002 by Reed Lai
+#   Fixed the bug that failing to remove ixpci module.
+#
+# v 0.2.0 28 Dec 2001 by Reed Lai
+#   Support kernel 2.4
+#
+# v 0.1.0 25 Oct 2001 by Reed Lai
+#   Re-filename to ixpci.inst (from pdaq.inst.)
+#   Change all "pdaq" to "ixpci."
+#
+# v 0.0.0 8 May 2001 by Reed Lai
+#   Create...
+################################################################
+
+echo "IxPCI Installation v 0.4.0"
+
+DEV_NAME='/dev/ixpci'
+DEV_TYPE='c'
+DEV_MODE='u=rw,g=rw,o=rw'
+DIR_DRV='/lib/modules/2.6.18-53.el5/extra/'
+
+echo -n "Check Kernel version... "
+KVER=`uname -r`; IFS=.; set $KVER; unset IFS; KVER=$1.$2
+echo $KVER
+
+if [ $KVER == "2.6" ] || [ $KVER == "2.4" ]; then
+        INFO="/proc/ixpci/ixpci"
+elif [ $KVER == "2.2" ]; then
+        INFO="/proc/ixpci"
+else
+        echo "This version of kernel is not supported."
+        exit
+fi
+
+echo "Load module ixpci"
+if [ $KVER == "2.6" ]; then
+        /sbin/insmod $DIR_DRV/ixpci.ko
+else
+        /sbin/insmod $DIR_DRV/ixpci.o
+fi
+
+if [ -r "$INFO" ]; then
+
+	major=`sed -n '/maj: /p' $INFO | sed 's/maj: //g'`
+
+	for module in `sed -n '/^mod: /p' $INFO | sed 's/^mod: //g'`
+	do
+		echo "Load module $module"
+		if [ $KVER == "2.6" ]; then
+                        /sbin/insmod $DIR_DRV/$module.ko
+                else
+                        /sbin/insmod $DIR_DRV/$module.o
+                fi
+	done
+
+	for minor in `sed -n '/^dev: /p' $INFO | sed 's/^dev: ixpci//g; s/ .*//g'`
+	do
+		echo "Re-make device file $DEV_NAME$minor $major $minor"
+		rm -f $DEV_NAME$minor
+		mknod -m=$DEV_MODE $DEV_NAME$minor $DEV_TYPE $major $minor
+	done
+
+else
+	echo  "No PCI DAQ device found!"
+	/sbin/rmmod ixpci
+fi
